@@ -1,5 +1,6 @@
 package com.agh.givealift.service;
 
+import com.agh.givealift.model.entity.Route;
 import com.agh.givealift.model.response.PushNotificationResponse;
 import com.agh.givealift.model.response.PushNotificationResponses;
 import com.agh.givealift.model.response.SubscriptionResponse;
@@ -16,4 +17,5 @@ public interface NotificationService {
      void notifyMobile(List<PushNotificationResponse> collect);
 
      void notifyWeb2(PushNotificationResponses result);
+     void notifySubsriptionService(Route route);
 }

@@ -1,14 +1,12 @@
 package com.agh.givealift.service.implementation;
 
+import com.agh.givealift.model.entity.Route;
 import com.agh.givealift.model.response.PushNotificationResponse;
 import com.agh.givealift.model.response.PushNotificationResponses;
 import com.agh.givealift.model.response.SubscriptionResponse;
 import com.agh.givealift.model.response.WebFCMResponse;
 import com.agh.givealift.service.NotificationService;
-import com.agh.givealift.service.threads.NotifyBotThread;
-import com.agh.givealift.service.threads.NotifyMobileThread;
-import com.agh.givealift.service.threads.NotifyOneWebThread;
-import com.agh.givealift.service.threads.NotifyWebThread;
+import com.agh.givealift.service.threads.*;
 import com.stefanik.cod.controller.COD;
 import com.stefanik.cod.controller.CODFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,4 +82,18 @@ public class NotificationServiceImpl implements NotificationService {
             });
         }
     }
+    
+
+    public void notifySubsriptionService(Route route) {
+
+            taskExecutor.execute(() -> {
+                NotifySubscriptionService notifyThread = applicationContext.getBean(NotifySubscriptionService.class);
+                notifyThread.setRoute(route);
+                taskExecutor.execute(notifyThread);
+            });
+        
+    }
+    
+    
+    
 }

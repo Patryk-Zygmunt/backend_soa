@@ -74,6 +74,15 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return Optional.empty();
     }
 
+    
+   public void notifySubscriptionService(Route route){
+        
+           notificationService.notifySubsriptionService(route);
+        
+   }
+    
+    
+    
     @Override
     public void checkAndNotify(Route route) {
         try {
