@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.getOne(id).getPhoto();
     }
 
-    @PreAuthorize("permitAll()")
+
     public GalUserPublicResponse getUserPublicInfo(long id) {
         return new GalUserPublicResponse(userRepository.getOne(id));
     }

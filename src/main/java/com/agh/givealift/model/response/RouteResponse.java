@@ -18,8 +18,6 @@ public class RouteResponse {
     private Double price;
     private List<Long> passengers;
 
-    public RouteResponse() {
-    }
 
     public Long getRouteId() {
         return routeId;

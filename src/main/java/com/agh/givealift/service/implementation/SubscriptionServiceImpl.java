@@ -2,13 +2,12 @@ package com.agh.givealift.service.implementation;
 
 import com.agh.givealift.configuration.Configuration;
 import com.agh.givealift.model.Tuple;
-import com.agh.givealift.model.entity.City;
-import com.agh.givealift.model.entity.Localization;
-import com.agh.givealift.model.entity.Route;
-import com.agh.givealift.model.entity.Subscription;
+import com.agh.givealift.model.builder.RouteResponseBuilder;
+import com.agh.givealift.model.entity.*;
 import com.agh.givealift.model.enums.DeviceType;
 import com.agh.givealift.model.enums.NotificationType;
 import com.agh.givealift.model.request.SubscriptionRequest;
+import com.agh.givealift.model.response.GalUserPublicResponse;
 import com.agh.givealift.model.response.PushNotificationResponse;
 import com.agh.givealift.model.response.PushNotificationResponses;
 import com.agh.givealift.model.response.SubscriptionResponse;
@@ -75,9 +74,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     
-   public void notifySubscriptionService(Route route){
-        
-           notificationService.notifySubsriptionService(route);
+   public void notifySubscriptionService(Route route, GalUserPublicResponse user){
+       RouteResponseBuilder builder =  new RouteResponseBuilder(route).withGalUser(user);
+           notificationService.notifySubsriptionService(builder.build());
         
    }
     

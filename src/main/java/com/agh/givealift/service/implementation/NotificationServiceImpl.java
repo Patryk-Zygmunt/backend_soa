@@ -1,10 +1,6 @@
 package com.agh.givealift.service.implementation;
 
-import com.agh.givealift.model.entity.Route;
-import com.agh.givealift.model.response.PushNotificationResponse;
-import com.agh.givealift.model.response.PushNotificationResponses;
-import com.agh.givealift.model.response.SubscriptionResponse;
-import com.agh.givealift.model.response.WebFCMResponse;
+import com.agh.givealift.model.response.*;
 import com.agh.givealift.service.NotificationService;
 import com.agh.givealift.service.threads.*;
 import com.stefanik.cod.controller.COD;
@@ -84,7 +80,7 @@ public class NotificationServiceImpl implements NotificationService {
     }
     
 
-    public void notifySubsriptionService(Route route) {
+    public void notifySubsriptionService(RouteResponse route) {
 
             taskExecutor.execute(() -> {
                 NotifySubscriptionService notifyThread = applicationContext.getBean(NotifySubscriptionService.class);

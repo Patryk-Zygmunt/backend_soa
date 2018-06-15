@@ -7,6 +7,7 @@ import com.agh.givealift.model.entity.City;
 import com.agh.givealift.model.entity.Localization;
 import com.agh.givealift.model.entity.Route;
 import com.agh.givealift.model.request.NewPassengerRequest;
+import com.agh.givealift.model.response.GalUserPublicResponse;
 import com.agh.givealift.model.response.RouteResponse;
 import com.agh.givealift.repository.RouteRepository;
 import com.agh.givealift.service.CityService;
@@ -66,7 +67,9 @@ public class RouteServiceImpl implements RouteService {
 
             route = routeRepository.save(route);
             cod.i("ADDED ROUTE: ", route);
-            subscriptionService.checkAndNotify(route);
+            
+            subscriptionService.notifySubscriptionService(route,new GalUserPublicResponse());
+           // subscriptionService.checkAndNotify(route);
             return Optional.of(route);
         }
         return Optional.empty();

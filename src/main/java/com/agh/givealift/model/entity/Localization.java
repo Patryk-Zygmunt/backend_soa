@@ -1,5 +1,7 @@
 package com.agh.givealift.model.entity;
 
+
+
 import com.agh.givealift.configuration.Configuration;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -49,7 +51,7 @@ public class Localization {
 //        this.buildingNumber = buildingNumber;
 //    }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Configuration.DATA_PATTERN)
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Configuration.DATA_PATTERN)
     public Date getDate() {
         return date;
     }
