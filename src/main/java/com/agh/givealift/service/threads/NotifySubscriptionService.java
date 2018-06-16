@@ -1,8 +1,6 @@
 package com.agh.givealift.service.threads;
 
 import com.agh.givealift.configuration.Configuration;
-import com.agh.givealift.model.entity.Route;
-import com.agh.givealift.model.response.PushNotificationResponses;
 import com.agh.givealift.model.response.RouteResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -16,7 +14,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +42,7 @@ public class NotifySubscriptionService extends Thread {
             
           //  StringEntity postingString = new StringEntity(gson.toJson(route));
             StringEntity postingString = new StringEntity(objectMapper.writeValueAsString(route), "UTF-8");
-            HttpPost post = new HttpPost(Configuration.SUB_SERIVICE);
+            HttpPost post = new HttpPost(Configuration.SUB_SERVICE);
           //  postingString.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
              postingString.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
             post.setEntity(postingString);

@@ -62,7 +62,7 @@ public class UserServiceInit {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        newUser.setPhoto(data);
+        //newUser.setPhoto(data);
         newUser.setRole("USER");
         newUser = userRepository.save(newUser);
 
