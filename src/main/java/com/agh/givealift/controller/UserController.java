@@ -23,11 +23,14 @@ import com.stefanik.cod.controller.CODFactory;
 import org.hibernate.TransactionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.hibernate5.SpringSessionContext;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +41,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -85,6 +89,17 @@ public class UserController {
         final GalUser user = userService.getUserByUsername(loginUser.getUsername()).get();
         final String token = jwtTokenUtil.generateToken(user);
         return ResponseEntity.ok(new AuthenticationResponse(user.getGalUserId(), token));
+    }
+
+
+    @GetMapping(value = "user/validate")
+    public ResponseEntity<?> validateToken(@RequestHeader HttpHeaders header) throws AuthenticationException {
+     if(!SecurityContextHolder.getContext().getAuthentication().isAuthenticated())
+            throw new AuthenticationException();
+        GalUser user = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+        if(user==null)
+                throw new AuthenticationException();
+        return new ResponseEntity<>(user.getGalUserId(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/signup", method = RequestMethod.POST)
