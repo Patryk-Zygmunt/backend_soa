@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echomap
+  annotations:
+      kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:  
+   - http:
+      paths:
+      - path: /api/subscription/*
+        backend:
+          serviceName: sub-soa
+          servicePort: 8081
+      - path: /api/notification/*
+        backend:
+          serviceName: sub-soa
+          servicePort: 8081
+      - path: /*
+        backend:
+          serviceName: backend-soa
+          servicePort: 8080
+
+

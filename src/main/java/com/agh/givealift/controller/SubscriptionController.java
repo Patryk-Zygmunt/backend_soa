@@ -41,12 +41,12 @@ public class SubscriptionController {
                 .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
     
-    @GetMapping("/all")
-    public ResponseEntity<List<SubscriptionResponse>> getAllSubscription(){
-        List<SubscriptionResponse> response =  subscriptionService.getAll()
-                .stream().map(subscriptionService::mapToSubscriptionResponse).collect(Collectors.toList());
-          return new ResponseEntity<>(response,HttpStatus.OK);               
-    }
+   // @GetMapping("/all")
+   // public ResponseEntity<List<SubscriptionResponse>> getAllSubscription(){
+     //   List<SubscriptionResponse> response =  subscriptionService.getAll()
+        //        .stream().map(subscriptionService::mapToSubscriptionResponse).collect(Collectors.toList());
+  //        return new ResponseEntity<>(response,HttpStatus.OK);
+ //   }
     
     
 
