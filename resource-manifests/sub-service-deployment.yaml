@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: backend-soa
+  name: sub-soa
 spec:
   replicas: 2
   minReadySeconds: 15
@@ -13,19 +13,14 @@ spec:
   template:
     metadata:
       labels:
-        app: backend2
+        app: sub
     spec:
       containers:
-      - image: givealift/backend
+      - image: givealift/notifications
         imagePullPolicy: Always
-        name: backend-soa
-        env:
-          - name: sub_address
-            value: "http://sub-soa"
+        name: sub-soa
         ports:
           - containerPort: 8080
-
-
 
 
 

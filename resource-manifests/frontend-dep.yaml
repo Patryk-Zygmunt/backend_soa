@@ -16,7 +16,7 @@ spec:
         app: frontend                                  # 7
     spec:
       containers:
-        - image: patrykzygmunt/frontend
+        - image: givealift/web2
           imagePullPolicy: Always                         # 8
           name: sa-frontend
           ports:
